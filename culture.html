@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEUTSCHE KULTUR - ENZYKLOPÄDIE</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        
+        body {
+            background: #121212;
+            color: white;
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+
+        /* Анимированная стрелка НАЗАД */
+        .back-btn {
+            position: fixed; top: 20px; left: 20px;
+            background: #FF0000; color: white;
+            padding: 15px 30px; border-radius: 50px;
+            border: 3px solid #FFCC00; text-decoration: none;
+            font-weight: bold; z-index: 2000;
+            animation: arrowMove 2s infinite;
+            display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+        @keyframes arrowMove {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-15px); }
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        h1 {
+            text-align: center; font-size: 3.5rem; color: #FFCC00;
+            text-shadow: 4px 4px 0px #FF0000; margin-bottom: 60px;
+            text-transform: uppercase;
+        }
+
+        .wiki-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .wiki-card {
+            background: #fff;
+            color: #000;
+            border-radius: 25px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            border: 5px solid #FFCC00;
+            transition: 0.4s;
+            min-height: 320px;
+        }
+
+        .wiki-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 40px rgba(255, 204, 0, 0.3); 
+        }
+
+        .wiki-card img {
+            width: 40%;
+            object-fit: cover;
+            transition: 0.5s;
+            background: #333;
+        }
+
+        .wiki-content {
+            padding: 35px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .wiki-
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEUTSCHE KULTUR - ENZYKLOPÄDIE</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
+        
+        body {
+            background: #121212;
+            color: white;
+            padding-top: 100px;
+            padding-bottom: 50px;
+        }
+
+        /* Анимированная стрелка НАЗАД */
+        .back-btn {
+            position: fixed; top: 20px; left: 20px;
+            background: #FF0000; color: white;
+            padding: 15px 30px; border-radius: 50px;
+            border: 3px solid #FFCC00; text-decoration: none;
+            font-weight: bold; z-index: 2000;
+            animation: arrowMove 2s infinite;
+            display: flex; align-items: center; gap: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.5);
+        }
+        @keyframes arrowMove {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-15px); }
+        }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        h1 {
+            text-align: center; font-size: 3.5rem; color: #FFCC00;
+            text-shadow: 4px 4px 0px #FF0000; margin-bottom: 60px;
+            text-transform: uppercase;
+        }
+
+        .wiki-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .wiki-card {
+            background: #fff;
+            color: #000;
+            border-radius: 25px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: row;
+            border: 5px solid #FFCC00;
+            transition: 0.4s;
+            min-height: 320px;
+        }
+
+        .wiki-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 40px rgba(255, 204, 0, 0.3); 
+        }
+
+        .wiki-card img {
+            width: 40%;
+            object-fit: cover;
+            transition: 0.5s;
+            background: #333;
+        }
+
+        .wiki-content {
+            padding: 35px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .wiki-content h2 {
+            color: #FF0000;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            border-bottom: 4px solid #000;
+            display: inline-block;
+        }
+
+        .wiki-content p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #222;
+        }
+
+        @media (max-width: 850px) {
+            .wiki-card { flex-direction: column; }
+            .wiki-card img { width: 100%; height: 280px; }
+            .wiki-content { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn">← ZURÜCK</a>
+
+<div class="container">
+    <h1>Deutsche Kultur & Erbe</h1>
+
+    <div class="wiki-grid">
+        
+        <div class="wiki-card">
+            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=800" alt="Oktoberfest">
+            <div class="wiki-content">
+                <h2>1. Das Oktoberfest</h2>
+                <p>Das Oktoberfest in München ist das größte Volksfest der Welt. Es wird seit 1810 gefeiert und zieht jährlich Millionen von Besuchern an. Traditionell gibt es bayerisches Bier und Lederhosen.</p>
+            </div>
+        </div>
+
+        <div class="wiki-card">
+            <img src="https://images.unsplash.com/photo-1599946347371-68eb71b16afc?auto=format&fit=crop&w=800" alt="Brandenburger Tor">
+            <div class="wiki-content">
+                <h2>2. Brandenburger Tor</h2>
+                <p>Das Brandenburger Tor ist ein berühmtes Wahrzeichen in Berlin. Es symbolisiert die deutsche Einheit und wurde im klassizistischen Stil erbaut.</p>
+            </div>
+        </div>
+
+        <div class="wiki-card">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=800" alt="Essen">
+            <div class="wiki-content">
+                <h2>3. Deutsche Kulinarik</h2>
+                <p>Deutschland ist bekannt für seine Brotvielfalt und Wurstspezialitäten. Beliebte Gerichte sind Currywurst, Sauerkraut und Wiener Schnitzel.</p>
+            </div>
+        </div>
+
+        <div class="wiki-card">
+            <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=800" alt="Musik">
+            <div class="wiki-content">
+                <h2>4. Musikland</h2>
+                <p>Deutschland hat weltberühmte Komponisten hervorgebracht, wie Ludwig van Beethoven und Bach. Die klassische Musik ist tief verwurzelt.</p>
+            </div>
+        </div>
+
+        <div class="wiki-card">
+            <img src="https://images.unsplash.com/photo-1547941126-3d5322b218b0?auto=format&fit=crop&w=800" alt="Schloss">
+            <div class="wiki-content">
+                <h2>5. Neuschwanstein</h2>
+                <p>Das Schloss Neuschwanstein in Bayern ist das berühmteste Schloss der Welt. Es war das Vorbild für das Disney-Schloss.</p>
+            </div>
+        </div>
+
+        <div class="wiki-card">
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800" alt="Autos">
+            <div class="wiki-content">
+                <h2>6. Automobilbau</h2>
+                <p>Marken wie Mercedes-Benz, BMW, Audi und Porsche stehen weltweit für deutsche Qualität и Ingenieurskunst.</p>
+            </div>
+        </div>
+
+        <div class="wiki-card">
+            <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?auto=format&fit=crop&w=800" alt="Buch">
+            <div class="wiki-content">
+                <h2>7. Grimms Märchen</h2>
+                <p>Jacob und Wilhelm Grimm sammelten deutsche Volksmärchen wie "Schneewittchen". Diese Geschichten sind heute Weltliteratur.</p>
+            </div>
+        </div>
+
+        <div class="wiki-card">
+            <img src="https://images.unsplash.com/photo-1466067332200-3482703848b6?auto=format&fit=crop&w=800" alt="Dom">
+            <div class="wiki-content">
+                <h2>8. Kölner Dom</h2>
+                <p>Der Kölner Dom ist ein Meisterwerk der gotischen Architektur. Er ist eines der wichtigsten Symbole der deutschen Geschichte.</p>
+            </div>
+        </div>
+
+        <div class="wiki-card">
+            <img src="https://images.unsplash.com/photo-1517457373958-b7bdd4587205?auto=format&fit=crop&w=800" alt="Karneval">
+            <div class="wiki-content">
+                <h2>9. Der Karneval</h2>
+                <p>Karneval wird besonders im Rheinland gefeiert. Die Menschen tragen Kostüme и участвуют в больших парадах.</p>
+            </div>
+        </div>
+
+        <div class="wiki-card">
+            <img src="https://images.unsplash.com/photo-1594904351111-a072f80b1a71?auto=format&fit=crop&w=800" alt="Bauhaus">
+            <div class="wiki-content">
+                <h2>10. Bauhaus Design</h2>
+                <p>Das Bauhaus war eine revolutionäre Kunstschule. Sie prägte die moderne Architektur durch das funktionale Design.</p>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

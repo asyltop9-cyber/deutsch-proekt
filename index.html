@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>ARTWIN DEUTSCH - HUB</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Black', sans-serif; }
+        
+        body {
+            /* Анимированный фон в цветах Германии */
+            background: linear-gradient(-45deg, #000000, #ff0000, #ffcc00, #000000);
+            background-size: 400% 400%;
+            animation: flagGradient 15s ease infinite;
+            color: white; min-height: 100vh;
+        }
+
+        @keyframes flagGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        nav {
+            background: rgba(0,0,0,0.9); padding: 25px;
+            display: flex; justify-content: center; gap: 30px;
+            border-bottom: 4px solid #FFCC00; position: sticky; top: 0; z-index: 1000;
+        }
+
+        nav a {
+            color: #FFCC00; text-decoration: none; font-size: 1.3rem;
+            padding: 10px 25px; border: 3px solid #FFCC00; border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        nav a:hover { background: #FFCC00; color: black; transform: scale(1.1); }
+
+        .container { max-width: 1100px; margin: 40px auto; padding: 20px; }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 7rem); text-align: center;
+            text-shadow: 6px 6px 0px #FF0000; margin-bottom: 50px;
+        }
+
+        .main-card {
+            background: rgba(0,0,0,0.85); padding: 40px; border-radius: 30px;
+            border: 3px solid #FFCC00; box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        h2 { color: #FFCC00; font-size: 2.5rem; border-left: 10px solid #FF0000; padding-left: 15px; margin-bottom: 30px; }
+
+        .anatomy-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+        .anatomy-list { font-size: 1.6rem; line-height: 2; list-style: none; }
+        .anatomy-list b { color: #FFCC00; }
+
+        table { width: 100%; border-collapse: collapse; background: white; color: black; margin-top: 30px; border-radius: 15px; overflow: hidden; }
+        th, td { padding: 18px; border: 2px solid #000; text-align: center; font-size: 1.3rem; }
+        th { background: #FF0000; color: white; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="culture.html">KULTUR</a>
+    <a href="test.html">PRÜFUNG</a>
+    <a href="game.html" style="background: #23d5ab; color: black; border-color: black;">EMOJI-SPIEL 🎮</a>
+</nav>
+
+<div class="container">
+    <h1 class="hero-title">ARTWIN DEUTSCH</h1>
+
+    <div class="main-card">
+        <h2>ANATOMIE DES MENSCHEN</h2>
+        <div class="anatomy-grid">
+            <ul class="anatomy-list">
+                <li><b>DER KOPF</b> (Голова)</li>
+                <li><b>DAS GEHIRN</b> (Мозг)</li>
+                <li><b>DAS HERZ</b> (Сердце)</li>
+                <li><b>DIE LUNGE</b> (Легкие)</li>
+                <li><b>DER MAGEN</b> (Желудок)</li>
+                <li><b>DAS SKELETT</b> (Скелет)</li>
+                <li><b>DIE MUSKELN</b> (Мышцы)</li>
+                <li><b>DIE HAUT</b> (Кожа)</li>
+            </ul>
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=500" style="width:100%; border-radius:20px; border: 4px solid #FFCC00;">
+        </div>
+
+        <h2 style="margin-top:50px;">WICHTIGE KASUS</h2>
+        <table>
+            <tr><th>Fall</th><th>Maskulin</th><th>Feminin</th><th>Neutral</th></tr>
+            <tr><td>Nominativ</td><td>der</td><td>die</td><td>das</td></tr>
+            <tr><td>Akkusativ</td><td style="background:#ffcccc; font-weight:bold;">den</td><td>die</td><td>das</td></tr>
+            <tr><td>Dativ</td><td style="background:#ffcccc; font-weight:bold;">dem</td><td style="background:#ffcccc; font-weight:bold;">der</td><td style="background:#ffcccc; font-weight:bold;">dem</td></tr>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

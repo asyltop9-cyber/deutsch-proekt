@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Emoji-Quiz: Gefühle</title>
+    <style>
+        .back-arrow-animated {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    align-items: center;
+    background: #ff0000;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: 3px solid #ffcc00;
+    font-weight: bold;
+    z-index: 1000;
+    box-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+    /* Анимация движения влево-вправо */
+    animation: arrowBounce 2s infinite;
+    transition: 0.3s;
+}
+
+.back-arrow-animated:hover {
+    background: #000;
+    transform: scale(1.1);
+}
+
+@keyframes arrowBounce {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(-10px); }
+}
+
+.arrow-svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    fill: white;
+}
+       
+
+.animated-back-btn:hover {
+    transform: scale(1.1);
+    background: #000;
+    border-color: #FF0000;
+}
+
+.arrow-icon {
+    font-size: 2rem;
+}
+
+@keyframes pulse-arrow {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 204, 0, 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(255, 204, 0, 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 204, 0, 0); }
+}
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Black', sans-serif; }
+        
+        body {
+            background: linear-gradient(to bottom, #000 33%, #D00 33%, #D00 66%, #FFD700 66%);
+            background-attachment: fixed;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #FFD700;
+            text-decoration: none;
+            border: 3px solid #FFD700;
+            padding: 10px 20px;
+            background: black;
+            font-size: 1.2rem;
+        }
+
+        .game-card {
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px;
+            border-radius: 30px;
+            border: 5px solid #FFD700;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        #emoji-display {
+            font-size: 8rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .opt-btn {
+            background: #D00;
+            color: white;
+            border: 3px solid #FFD700;
+            padding: 15px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+            border-radius: 10px;
+        }
+
+        .opt-btn:hover {
+            transform: scale(1.05);
+            background: #FFD700;
+            color: black;
+        }
+
+        #score-display {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            color: #FFD700;
+        }
+
+        #feedback {
+            height: 30px;
+            margin-top: 10px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-arrow-animated">
+    <svg class="arrow-svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+    HAUPT
+</a>
+    <div class="game-card">
+        <h1 style="color: #FFD700; margin-bottom: 20px;">Wie fühlt er sich?</h1>
+        
+        <span id="emoji-display">😊</span>
+        
+        <div id="feedback"></div>
+
+        <div class="options-grid" id="options">
+            </div>
+
+        <div id="score-display">PUNKTE: 0</div>
+    </div>
+
+<script>
+    const emojiData = [
+        { e: "😊", c: "glücklich", o: ["traurig", "wütend", "müde"] },
+        { e: "😢", c: "traurig", o: ["lustig", "mutig", "stolz"] },
+        { e: "😡", c: "wütend", o: ["ruhig", "froh", "ängstlich"] },
+        { e: "😴", c: "müde", o: ["aktiv", "bereit", "hungrig"] },
+        { e: "😎", c: "cool", o: ["langweilig", "schüchtern", "krank"] },
+        { e: "😱", c: "ängstlich", o: ["mutig", "stark", "glücklich"] },
+        { e: "😋", c: "hungrig", o: ["durstig", "satt", "müde"] },
+        { e: "🥳", c: "froh", o: ["traurig", "böse", "ernst"] },
+        { e: "🤔", c: "nachdenklich", o: ["sicher", "verwirrt", "dumm"] },
+        { e: "💪", c: "mutig", o: ["schwach", "feige", "klein"] },
+        { e: "🗣️", c: "kommunikativ", o: ["leise", "stumm", "allein"] },
+        { e: "🤝", c: "freundlich", o: ["unhöflich", "böse", "fremd"] }
+    ];
+
+    let score = 0;
+    let currentEmoji = {};
+
+    function nextQuestion() {
+        const feedback = document.getElementById('feedback');
+        feedback.innerText = "";
+        
+        // Берем случайный смайлик
+        currentEmoji = emojiData[Math.floor(Math.random() * emojiData.length)];
+        document.getElementById('emoji-display').innerText = currentEmoji.e;
+
+        // Создаем массив всех вариантов и перемешиваем
+        let allOptions = [currentEmoji.c, ...currentEmoji.o];
+        allOptions.sort(() => Math.random() - 0.5);
+
+        const optionsDiv = document.getElementById('options');
+        optionsDiv.innerHTML = '';
+
+        allOptions.forEach(opt => {
+            const btn = document.createElement('button');
+            btn.className = 'opt-btn';
+            btn.innerText = opt;
+            btn.onclick = () => checkAnswer(opt);
+            optionsDiv.appendChild(btn);
+        });
+    }
+
+    function checkAnswer(selected) {
+        const feedback = document.getElementById('feedback');
+        if (selected === currentEmoji.c) {
+            score++;
+            feedback.style.color = "#23d5ab";
+            feedback.innerText = "Richtig! (Правильно)";
+            document.getElementById('score-display').innerText = `PUNKTE: ${score}`;
+            setTimeout(nextQuestion, 1000);
+        } else {
+            feedback.style.color = "#ff4d4d";
+            feedback.innerText = "Falsch! Versuch es nochmal.";
+        }
+    }
+
+    // Запуск игры
+    nextQuestion();
+</script>
+</body>
+</html>

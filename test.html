@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>DEUTSCH-TEST STATISTIK</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Black', sans-serif; }
+        
+        body {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+
+        /* Анимированная стрелка */
+        .back-btn {
+            position: fixed; top: 20px; left: 20px;
+            background: #FF0000; color: white;
+            padding: 15px 30px; border-radius: 50px;
+            border: 3px solid #FFCC00; text-decoration: none;
+            font-weight: bold; z-index: 2000;
+            animation: arrowMove 2s infinite;
+            display: flex; align-items: center; gap: 10px;
+        }
+        @keyframes arrowMove {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(-15px); }
+        }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 20px; }
+
+        .ticket-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px; margin-top: 30px;
+        }
+
+        .t-btn {
+            background: #222; color: #FFCC00;
+            border: 3px solid #FFCC00; padding: 20px;
+            cursor: pointer; border-radius: 15px;
+            transition: 0.3s; font-size: 1rem;
+        }
+
+        /* Секция теста */
+        #quiz-container {
+            display: none; background: #fff; color: #000;
+            padding: 40px; border-radius: 30px;
+            text-align: left; border: 5px solid #FF0000;
+        }
+
+        .q-item { margin-bottom: 25px; border-bottom: 1px solid #ddd; padding-bottom: 15px; }
+        
+        /* Экран результатов */
+        #result-screen {
+            display: none;
+            background: #222;
+            padding: 50px;
+            border-radius: 30px;
+            border: 5px solid #FFCC00;
+        }
+
+        .percent-text { font-size: 5rem; color: #FFCC00; margin: 20px 0; }
+        
+        .progress-bar-bg {
+            width: 100%; height: 30px; background: #444;
+            border-radius: 15px; overflow: hidden; margin: 20px 0;
+        }
+        
+        #progress-fill {
+            height: 100%; width: 0%; background: #28a745;
+            transition: width 1s ease-in-out;
+        }
+
+        .retry-btn {
+            padding: 15px 40px; background: #FF0000; color: white;
+            border: none; border-radius: 10px; cursor: pointer; font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+
+<a href="index.html" class="back-btn">← ZURÜCK</a>
+
+<div class="container" id="selection-zone">
+    <h1 style="font-size: 3rem; text-shadow: 3px 3px 0 #FF0000;">DEUTSCH-PRÜFUNG</h1>
+    <div id="grid" class="ticket-grid"></div>
+</div>
+
+<div class="container">
+    <div id="quiz-container">
+        <h2 id="ticket-title" style="margin-bottom: 20px; color: #FF0000;"></h2>
+        <div id="questions-list"></div>
+        <button onclick="calculateResults()" style="width:100%; padding:20px; background:green; color:white; border:none; border-radius:15px; font-size:1.5rem; cursor:pointer;">FERTIG</button>
+    </div>
+
+    <div id="result-screen">
+        <h2 style="color:white;">ERGEBNIS (РЕЗУЛЬТАТ)</h2>
+        <div class="percent-text" id="percent-val">0%</div>
+        <div class="progress-bar-bg">
+            <div id="progress-fill"></div>
+        </div>
+        <p id="result-comment" style="font-size: 1.5rem; margin-bottom: 30px;"></p>
+        <button class="retry-btn" onclick="location.reload()">NEUSTART</button>
+    </div>
+</div>
+
+<script>
+    const database = [
+        { q: "Ich ___ Deutsch.", a: ["lerne", "lernst", "lernen"], c: 0 },
+        { q: "Wie spät ist es? - ___ ist 10 Uhr.", a: ["Es", "Das", "Er"], c: 0 },
+        { q: "Ich gehe ___ Kino.", a: ["in das", "nach", "zu"], c: 0 },
+        { q: "Hast du ___ Hunger?", a: ["der", "einen", "-"], c: 2 },
+        { q: "Trotz ___ Wetters gehen wir raus.", a: ["des schlechten", "dem schlechten", "das schlechte"], c: 0 },
+        { q: "Er hat mich gefragt, ___ ich komme.", a: ["ob", "wann", "dass"], c: 0 },
+        { q: "Если бы я знал... - Wenn ich это ___...", a: ["wüsste", "weiß", "wusste"], c: 0 }
+    ];
+
+    const grid = document.getElementById('grid');
+    let activeQuestions = [];
+
+    for (let i = 1; i <= 20; i++) {
+        let btn = document.createElement('button');
+        btn.className = 't-btn';
+        btn.innerHTML = `TICKET ${i}`;
+        btn.onclick = () => startQuiz(i);
+        grid.appendChild(b = btn);
+    }
+
+    function startQuiz(num) {
+        document.getElementById('selection-zone').style.display = 'none';
+        document.getElementById('quiz-container').style.display = 'block';
+        document.getElementById('ticket-title').innerText = `Ticket ${num}`;
+        
+        const list = document.getElementById('questions-list');
+        list.innerHTML = '';
+        activeQuestions = [...database].sort(() => 0.5 - Math.random()).slice(0, 10);
+        
+        activeQuestions.forEach((item, index) => {
+            let opts = item.a.map((opt, optIdx) => `
+                <label style="display:block; margin:5px 0;">
+                    <input type="radio" name="q${index}" value="${optIdx}"> ${opt}
+                </label>
+            `).join('');
+            list.innerHTML += `<div class="q-item"><b>${index+1}. ${item.q}</b>${opts}</div>`;
+        });
+    }
+
+    function calculateResults() {
+        let score = 0;
+        activeQuestions.forEach((item, index) => {
+            const selected = document.querySelector(`input[name="q${index}"]:checked`);
+            if (selected && parseInt(selected.value) === item.c) score++;
+        });
+
+        const percent = (score / 10) * 100;
+        
+        // Скрываем вопросы, показываем результат
+        document.getElementById('quiz-container').style.display = 'none';
+        document.getElementById('result-screen').style.display = 'block';
+        
+        // Анимация процентов
+        document.getElementById('percent-val').innerText = percent + "%";
+        document.getElementById('progress-fill').style.width = percent + "%";
+        
+        // Цвет полоски
+        const fill = document.getElementById('progress-fill');
+        if(percent < 50) fill.style.background = "#FF0000";
+        else if(percent < 80) fill.style.background = "#FFCC00";
+        else fill.style.background = "#28a745";
+
+        const comment = document.getElementById('result-comment');
+        if(percent === 100) comment.innerText = "Perfekt! Du bist ein Profi! 🇩🇪";
+        else if(percent >= 60) comment.innerText = "Gut gemacht! (Хорошая работа)";
+        else comment.innerText = "Du musst noch mehr lernen. (Нужно больше учиться)";
+    }
+</script>
+
+</body>
+</html>
