@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ARTWIN DEUTSCH - HUB</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial Black', sans-serif; }
@@ -55,6 +56,22 @@
         table { width: 100%; border-collapse: collapse; background: white; color: black; margin-top: 30px; border-radius: 15px; overflow: hidden; }
         th, td { padding: 18px; border: 2px solid #000; text-align: center; font-size: 1.3rem; }
         th { background: #FF0000; color: white; }
+        @media (max-width: 600px) {
+    .hero-title {
+        font-size: 3rem; /* Уменьшаем гигантский заголовок для экрана телефона */
+        letter-spacing: 2px;
+    }
+    nav {
+        flex-direction: column; /* Кнопки меню встанут друг под друга */
+        align-items: stretch;
+    }
+    .anatomy-list {
+        font-size: 1.1rem; /* Удобный размер текста для чтения */
+    }
+    .wiki-card {
+        flex-direction: column; /* Картинка будет сверху, текст снизу */
+    }
+}
     </style>
 </head>
 <body>
@@ -97,4 +114,5 @@
 </body>
 
 </html>
+
 
